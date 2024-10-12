@@ -1,0 +1,39 @@
+
+body {
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+  }
+  
+  #masterBox{
+    border: 3px solid #008F6D;
+    height: 408px;
+    width: 366px;
+    border-radius: 50px;
+    background-color: #8C8C8C;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  #titleBox {
+    height: 60px;
+    width: 310px;
+    text-align: center;
+    font-family: "Irish Grover";
+    font-size: 45px;
+    color: #23F900;
+  }
+  
+  #contentBox {
+    border: 3px solid #D9D9D9;
+    text-align: center;
+    width: 310px;
+    height: 290px;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+  }
