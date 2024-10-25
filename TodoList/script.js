@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
         li.appendChild(t);
         if (inputValue === '') {
             alert("You must write something!");
-        } else {
+        }
+        else {
             document.getElementById("myList").appendChild(li);
 
             var deleteButton = document.createElement("Span");
@@ -29,10 +30,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 div.style.display = "none";
             }
 
-            editButton.onclick = function () {
+            editButton.onclick = function handleEdit() {
                 var li = this.parentElement;
                 var currentText = li.firstChild.nodeValue;
-                
+
                 // Create input box to edit the current text
                 var inputField = document.createElement("input");
                 inputField.type = "text";
@@ -42,15 +43,38 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 // Append input box to list item
                 li.insertBefore(inputField, li.firstChild);
 
-                // Replace the "Edit" button with "Save" button
-                editButton.textContent = "Save";
+                // Change "Edit" button text to "Save"
+                this.textContent = "Save";
 
-                // Handle save functionality
-                editButton.onclick = function () {
+                // Change onclick to handle save functionality
+                this.onclick = function handleSave() {
                     const newText = inputField.value;
-                    li.firstChild.nodeValue = newText;
-                    li.removeChild(inputField);
-                    editButton.textContent = "Edit"; // Revert button back to "Edit"
+
+                    // Clear the entire content of li
+                    li.innerHTML = '';
+
+                    // Add the new text to li
+                    li.appendChild(document.createTextNode(newText));
+
+                    // Re-create Edit button
+                    const newEditButton = document.createElement("span");
+                    newEditButton.className = "edit";
+                    newEditButton.textContent = "Edit";
+                    li.appendChild(newEditButton);
+
+                    // Re-create Delete button
+                    const newDeleteButton = document.createElement("span");
+                    newDeleteButton.className = "delete";
+                    newDeleteButton.textContent = "Delete";
+                    li.appendChild(newDeleteButton);
+
+                    // Reattach edit functionality to allow for multiple edits
+                    newEditButton.onclick = handleEdit;
+
+                    // Attach delete functionality
+                    newDeleteButton.onclick = function () {
+                        li.style.display = "none";
+                    }
                 }
             }
         }
