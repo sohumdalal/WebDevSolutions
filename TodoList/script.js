@@ -12,6 +12,22 @@ document.addEventListener("DOMContentLoaded", (e) => {
         else {
             document.getElementById("myList").appendChild(li);
 
+
+
+
+            const dateStamp = document.createElement("span");
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleDateString("en-US", {
+                year: 'numeric', month: 'short', day: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+            dateStamp.className = "date";
+            dateStamp.textContent = ` ${formattedDate}`;
+            li.appendChild(dateStamp);
+
+
+            
+
             var deleteButton = document.createElement("Span");
             var txt = document.createTextNode("Delete");
             deleteButton.className = "delete";
@@ -50,7 +66,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 this.onclick = function handleSave() {
                     const newText = inputField.value;
 
-                    // Clear the entire content of li
                     li.innerHTML = '';
 
                     // Add the new text to li
