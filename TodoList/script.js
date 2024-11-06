@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
             alert("You must write something!");
             return; // Exit if input is empty
         }
-        
+
         document.getElementById("myList").appendChild(li);
 
         const dateStamp = document.createElement("span");
@@ -76,6 +76,17 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 newDeleteButton.textContent = "Delete";
                 li.appendChild(newDeleteButton);
 
+                // Re-create Date Stamp
+                const dateStamp = document.createElement("span");
+                const currentDate = new Date();
+                const formattedDate = currentDate.toLocaleDateString("en-US", {
+                    year: 'numeric', month: 'short', day: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
+                });
+                dateStamp.className = "date";
+                dateStamp.textContent = ` ${formattedDate}`;
+                li.appendChild(dateStamp);
+
                 // Reattach edit functionality to allow for multiple edits
                 newEditButton.onclick = handleEdit;
 
@@ -110,7 +121,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
             newItem(item); // Call newItem for each loaded item
         });
     }
-    
+
 
     document.querySelector("#addBtn").addEventListener("click", () => {
         const inputValue = document.getElementById("myInput").value;
